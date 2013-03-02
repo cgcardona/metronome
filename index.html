@@ -7,7 +7,22 @@
     <link rel="stylesheet" href="css/styles.css" media="screen">
   </head>
   <body>
-    <div id="container">Metronome</div>
+    <div id="container">
+      <h1>Metronome</h1>
+      <script type="text/x-handlebars">
+      <ul>
+        <li>Beats Per Minute:
+            {{beatsPerMinute}}
+        </li>
+        <li>Current Measure:
+            {{currentMeasure}}
+        </li>
+        <li>Current Beat:
+            {{currentBeat}}
+        </li>
+      </ul>
+      </script>
+    </div>
     <script src="js/jquery.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/handlebars.js"></script>
