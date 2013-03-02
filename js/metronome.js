@@ -1,5 +1,7 @@
-/*global Ember:false */
-/*global console:false */
+/*jshint devel:true */
+/*global Ember */
+/*global _ */
+/*global setInterval */
 window.onload = function(){
   'use strict';
 
@@ -27,7 +29,7 @@ window.onload = function(){
       var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
       console.log(beatsPerMeasureRange);
       setInterval(function(){
-        console.log('shmisssss');
+        console.log('set interval is looping');
       //}, this.beatUnitLength);
       }, 1000);
     },
@@ -49,8 +51,10 @@ window.onload = function(){
     }
   });
 
-  Metronome.IndexController = Ember.Controller.extend({
-    beatsPerMinute : '245456'
+  Metronome.ApplicationController = Ember.Controller.extend({
+    beatsPerMinute : '245456',
+    currentMeasure : '245456',
+    currentBeat    : '245456'
   });
 
   var metronome = Metronome.metronome.create({});
