@@ -5,15 +5,15 @@
 window.onload = function(){
   'use strict';
 
-  var Metronome = Ember.Application.create();
+  var MetronomeApplication = Ember.Application.create();
 
-  Metronome.metronome = Ember.Object.extend({
+  MetronomeApplication.Metronome = Ember.Object.extend({
     beatsPerMinute    : 128,
     beatsPerMeasure   : 4,
     beatUnit          : 4,
     currentMeasure    : 1,
     currentBeat       : 1,
-    beatUnitLength    : undefined,
+    beatUnitLength    : 60 / 128,
     init              : function()
     {
       this.beatUnitLength = this.setBeatUnitLength();
@@ -24,18 +24,24 @@ window.onload = function(){
     },
     play              : function()
     {
-      console.log('playing');
-      
-      Metronome.ApplicationController
-
       var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
-
-      if(this.currentBeat >= beatsPerMeasureRange[beatsPerMeasureRange - 1])
-      console.log(beatsPerMeasureRange);
+      var context = this;
       setInterval(function(){
-        console.log('set interval is looping');
-      //}, this.beatUnitLength);
-      }, 1000);
+        console.log('current beat: ' + context.currentBeat);
+        console.log('current measure: ' + context.currentMeasure);
+        if(context.currentBeat >= beatsPerMeasureRange.length)
+        {
+          context.currentBeat = 1;
+          context.currentMeasure = context.currentMeasure + 1;
+        }
+        else
+        {
+          context.currentBeat = context.currentBeat + 1;
+        }
+
+
+      }, this.beatUnitLength * 1000);
+
     },
     pause             : function()
     {
@@ -51,10 +57,12 @@ window.onload = function(){
     }
   });
 
-  var metronome = Metronome.metronome.create({});
+  var metronome = MetronomeApplication.Metronome.create({
+    beatsPerMinute : 60
+  });
   metronome.play();
 
-  Metronome.ApplicationController = Ember.Controller.extend({
+  MetronomeApplication.ApplicationController = Ember.Controller.extend({
     beatsPerMinute : metronome.beatsPerMinute,
     currentMeasure : metronome.currentMeasure,
     currentBeat    : metronome.currentBeat
