@@ -25,8 +25,12 @@ window.onload = function(){
     play              : function()
     {
       console.log('playing');
+      
+      Metronome.ApplicationController
 
       var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
+
+      if(this.currentBeat >= beatsPerMeasureRange[beatsPerMeasureRange - 1])
       console.log(beatsPerMeasureRange);
       setInterval(function(){
         console.log('set interval is looping');
@@ -44,20 +48,15 @@ window.onload = function(){
     reset             : function()
     {
       console.log('reset');
-    },
-    paintPixels       : function()
-    {
-      console.log('painting pixels');
     }
   });
 
-  Metronome.ApplicationController = Ember.Controller.extend({
-    beatsPerMinute : '245456',
-    currentMeasure : '245456',
-    currentBeat    : '245456'
-  });
-
   var metronome = Metronome.metronome.create({});
-
   metronome.play();
+
+  Metronome.ApplicationController = Ember.Controller.extend({
+    beatsPerMinute : metronome.beatsPerMinute,
+    currentMeasure : metronome.currentMeasure,
+    currentBeat    : metronome.currentBeat
+  });
 };
