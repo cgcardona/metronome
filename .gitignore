@@ -1,5 +1,6 @@
 # Random always ignore buggers
 *.swp
+*.swo
 
 # OS or Editor folders
 .DS_Store
