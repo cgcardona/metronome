@@ -5,66 +5,63 @@
 window.onload = function(){
   'use strict';
 
-  var MetronomeApplication = Ember.Application.create();
+  function Metronome(settings){
+    this.beatsPerMinute = settings.beatsPerMinute || 128;
+    this.beatsPerMeasure = settings.beatsPerMeasure || 4;
+    this.beatUnit = settings.beatUnit || 4;
+    this.currentMeasure = settings.currentMeasure || 1;
+    this.currentBeat = settings.currentBeat || 1;
+    this.beatUnitLength = _.isNumber(settings.beatsPerMinute) ? this.setBeatUnitLength() : 60 / 128;
+    this.loopState = false;
+  }
 
-  MetronomeApplication.Metronome = Ember.Object.extend({
-    beatsPerMinute    : 128,
-    beatsPerMeasure   : 4,
-    beatUnit          : 4,
-    currentMeasure    : 1,
-    currentBeat       : 1,
-    beatUnitLength    : 60 / 128,
-    init              : function()
-    {
-      this.beatUnitLength = this.setBeatUnitLength();
-    },
-    setBeatUnitLength : function()
-    {
-       return 60 / this.beatsPerMinute;
-    },
-    play              : function()
-    {
-      var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
-      var context = this;
-      setInterval(function(){
-        console.log('current beat: ' + context.currentBeat);
-        console.log('current measure: ' + context.currentMeasure);
-        if(context.currentBeat >= beatsPerMeasureRange.length)
-        {
-          context.currentBeat = 1;
-          context.currentMeasure = context.currentMeasure + 1;
-        }
-        else
-        {
-          context.currentBeat = context.currentBeat + 1;
-        }
+  Metronome.prototype.setBeatUnitLength = function(){
+    return 60 / this.beatsPerMinute;
+  };
 
+  Metronome.prototype.play = function(){
+    var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
+    var context = this;
+    this.loopState = true;
+    this.timeouts = [];
+    this.timeouts.push(setInterval(function(){
+      if(context.loopState === true){
+        context.loop(beatsPerMeasureRange);
+      }
+    }, this.beatUnitLength * 1000));
+  };
 
-      }, this.beatUnitLength * 1000);
+  Metronome.prototype.stop = function(){
+    this.loopState = false;
+    $('#status').text('Inactive');
+    $.each(this.timeouts, function (x, id) {
+      clearTimeout(id);
+    });
+  };
 
-    },
-    pause             : function()
+  Metronome.prototype.loop = function(beatsPerMeasureRange){
+    $('#currentMeasure').text(this.currentMeasure);
+    $('#currentBeat').text(this.currentBeat);
+    $('#status').text('Active');
+
+    if(this.currentBeat >= beatsPerMeasureRange.length)
     {
-      console.log('paused');
-    },
-    stop              : function()
-    {
-      console.log('stopped');
-    },
-    reset             : function()
-    {
-      console.log('reset');
+      this.currentBeat = 1;
+      this.currentMeasure = this.currentMeasure + 1;
     }
-  });
+    else
+      this.currentBeat = this.currentBeat + 1;
+  };
 
-  var metronome = MetronomeApplication.Metronome.create({
+  var met = new Metronome({
     beatsPerMinute : 60
   });
-  metronome.play();
 
-  MetronomeApplication.ApplicationController = Ember.Controller.extend({
-    beatsPerMinute : metronome.beatsPerMinute,
-    currentMeasure : metronome.currentMeasure,
-    currentBeat    : metronome.currentBeat
+  $('#start').click(function(){
+    met.play();
+  });
+
+  $('#stop').click(function(){
+    met.stop();
   });
 };
