@@ -5,9 +5,34 @@
 window.onload = function(){
   'use strict';
 
-  // view to encompass the template
-  // controller to interact with user
-  // model to encompass metronome state
+  /*
+   * MetronomeController
+   * This object will receive input from the user and query the model or direct
+   * the view to change depending on the user's action
+   *
+   *
+   * bool constructor()
+   */
+  function MetronomeController(){
+  }
+
+  /*
+   * MetronomeView
+   *
+   *
+   * bool constructor()
+   */
+  function MetronomeView(){
+  }
+
+  /*
+   * MetronomeModel
+   *
+   *
+   * bool constructor()
+   */
+  function MetronomeModel(){
+  }
 
   function Metronome(settings){
     this.beatsPerMinute = settings.beatsPerMinute || 128;
