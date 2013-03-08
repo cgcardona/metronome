@@ -5,6 +5,10 @@
 window.onload = function(){
   'use strict';
 
+  // view to encompass the template
+  // controller to interact with user
+  // model to encompass metronome state
+
   function Metronome(settings){
     this.beatsPerMinute = settings.beatsPerMinute || 128;
     this.beatsPerMeasure = settings.beatsPerMeasure || 4;
@@ -12,6 +16,7 @@ window.onload = function(){
     this.currentMeasure = settings.currentMeasure || 1;
     this.currentBeat = settings.currentBeat || 1;
     this.beatUnitLength = _.isNumber(settings.beatsPerMinute) ? this.setBeatUnitLength() : 60 / 128;
+    this.ui = settings.ui || false;
     this.loopState = false;
   }
 
@@ -20,8 +25,8 @@ window.onload = function(){
   };
 
   Metronome.prototype.play = function(){
-    var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
     var context = this;
+    var beatsPerMeasureRange = _.range(this.beatsPerMeasure);
     this.loopState = true;
     this.timeouts = [];
     this.timeouts.push(setInterval(function(){
@@ -33,16 +38,19 @@ window.onload = function(){
 
   Metronome.prototype.stop = function(){
     this.loopState = false;
-    $('#status').text('Inactive');
+    if(this.ui === true)
+      $('#status').text('Inactive');
     $.each(this.timeouts, function (x, id) {
       clearTimeout(id);
     });
   };
 
   Metronome.prototype.loop = function(beatsPerMeasureRange){
-    $('#currentMeasure').text(this.currentMeasure);
-    $('#currentBeat').text(this.currentBeat);
-    $('#status').text('Active');
+    if(this.ui === true){
+      $('#currentMeasure').text(this.currentMeasure);
+      $('#currentBeat').text(this.currentBeat);
+      $('#status').text('Active');
+    }
 
     if(this.currentBeat >= beatsPerMeasureRange.length)
     {
@@ -53,8 +61,18 @@ window.onload = function(){
       this.currentBeat = this.currentBeat + 1;
   };
 
+  Metronome.prototype.currentState = function(){
+    var context = this;
+    var returnObj = {};
+    $.each(Object.keys(this), function(x, el){
+      returnObj[el] = context[el];
+    });
+    return returnObj;
+  };
+
   var met = new Metronome({
-    beatsPerMinute : 60
+    beatsPerMinute : 60,
+    ui             : true
   });
 
   $('#start').click(function(){
@@ -62,6 +80,8 @@ window.onload = function(){
   });
 
   $('#stop').click(function(){
+    console.log(met.currentState());
     met.stop();
   });
+
 };
