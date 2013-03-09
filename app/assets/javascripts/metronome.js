@@ -96,7 +96,7 @@ window.onload = function(){
   };
 
   var met = new Metronome({
-    beatsPerMinute : 60,
+    beatsPerMinute : 128,
     ui             : true
   });
 
