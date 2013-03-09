@@ -8,16 +8,22 @@
   </head>
   <body>
     <div id='container'>
+      <div id='headerContainer'>
+        <h1>Metronome</h1>
+      </div>
+
       <div id='screenContainer'>
         <div id='screen'>
-          Measure: <span id='currentMeasure'></span>
-          Beat: <span id='currentBeat'></span>
-          Status: <span id='status'></span>
+          <p>
+          Measure: <span id='currentMeasure'>1</span>
+          Beat: <span id='currentBeat'>1</span>
+          Status: <span id='status'>Inactive</span>
+          </p>
         </div>
       </div>
 
       <div id='beatsPerMeasureContainer'>
-        <p>Beats per Measure</p>
+        <h2>Beats per Measure</h2>
         <div>
           <span id='plusBtn'>+</span>
           <span id='beatsPerMeasureCount'>128</span>
@@ -26,7 +32,7 @@
       </div>
 
       <div id='timeSignatureContainer'>
-        <p>Time Signature</p>
+        <h2>Time Signature</h2>
         <div>
           <span id='beat'>4</span> /
           <span id='note'>4</span>
