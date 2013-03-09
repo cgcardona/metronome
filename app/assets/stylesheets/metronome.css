@@ -1,5 +1,5 @@
 body{
-  padding-top:50px;
+  padding-top:25px;
   font-family:helvetica;
   font-weight:200;
   background-image: url('/assets/mochaGrunge.png');
@@ -14,7 +14,6 @@ hr{
 }
 
 #container{
-  margin-top:50px;
   width:500px;
   margin:0 auto;
   background:gray;
@@ -22,6 +21,7 @@ hr{
   border:solid 1px rgb(224, 199, 199);
   box-shadow:0 0 10px #000;
   background: linear-gradient(to bottom, rgba(245,246,246,1) 0%,rgba(219,220,226,1) 21%,rgba(184,186,198,1) 49%,rgba(221,223,227,1) 80%,rgba(245,246,246,1) 100%); /* W3C */
+  margin-bottom:25px;
 }
 
 #headerContainer{
@@ -102,7 +102,7 @@ hr{
   box-shadow:0px 0px 3px #444;
 }
 
-#timeSignatureContainer{
+#timeSignatureContainer, #playBtnContainer{
   width:450px;
   margin:0 auto;
 }
@@ -128,4 +128,16 @@ hr{
 #timeSignatureContainer h2{
   margin-top:25px;
   margin-bottom:25px;
+}
+
+#playBtnContainer{
+  text-align:center;
+}
+
+#playBtnContainer #start, #playBtnContainer #stop{
+  margin-top:25px;
+  margin-bottom:25px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px; 
 }
