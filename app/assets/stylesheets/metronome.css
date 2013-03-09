@@ -2,10 +2,15 @@ body{
   padding-top:50px;
   font-family:helvetica;
   font-weight:200;
+  background-image: url('/assets/mochaGrunge.png');
 }
 
 h2{
   font-size:1.25em;
+}
+
+hr{
+  margin:0;
 }
 
 #container{
@@ -40,9 +45,8 @@ h2{
 }
 
 #screenContainer{
-  padding-top:20px;
-  margin-bottom:20px;
-  padding-bottom:20px;
+  padding-top:25px;
+  padding-bottom:25px;
 }
 
 #screen{
@@ -73,37 +77,25 @@ h2{
 }
 
 #beatsPerMeasureContainer h2{
-  margin-bottom:10px;
+  margin-bottom:25px;
 }
 
 #beatsPerMeasureContainer li{
-  display:inline;
+  display:inline-block;
+  text-align:center;
+  font-size:2em;
 }
 
-#beatsPerMeasureContainer li:first-child{
-  width:30%;
+#beatsPerMeasureContainer li:first-child, #beatsPerMeasureContainer li:last-child{
+  width:25%;
 }
 
 #beatsPerMeasureContainer li:nth-child(2){
-  width:38%;
+  width:48%;
 }
 
-#beatsPerMeasureContainer li:last-child{
-  width:30%;
-}
-
-#beatsPerMeasureContainer li #plusBtn{
-  height:50px;
-  font-size:2em;
-  background: linear-gradient(to bottom, rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
-  border-radius:3px;
-  border:solid 1px white;
-  box-shadow:0px 0px 3px #444;
-}
-
-#beatsPerMeasureContainer li #minusBtn{
-  width:50px;
-  height:50px;
+#beatsPerMeasureContainer li #plusBtn, #beatsPerMeasureContainer li #minusBtn{
+  font-size:1.5em;
   background: linear-gradient(to bottom, rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
   border-radius:3px;
   border:solid 1px white;
