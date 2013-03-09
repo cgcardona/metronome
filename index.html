@@ -1,24 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Metronome</title>
-    <link rel="stylesheet" href="css/reset.css" media="screen">
-    <link rel="stylesheet" href="css/styles.css" media="screen">
+    <link rel='stylesheet' href='css/reset.css' media='screen'>
+    <link rel='stylesheet' href='css/metronome.css' media='screen'>
   </head>
   <body>
-    <div id="container">
-      <h1>Metronome</h1>
-      <button id='start'>Start</button>
-      <button id='stop'>Stop</button>
-      <div id='output'>
-        <p>Beat: <span id='currentBeat'></span></p>
-        <p>Measure: <span id='currentMeasure'></span></p>
-        <p>Status: <span id='status'></span></p>
+    <div id='container'>
+      <div id='headerContainer'>
+        <h1>Metronome</h1>
+      </div>
+
+      <div id='screenContainer'>
+        <div id='screen'>
+          <p>
+          Measure: <span id='currentMeasure'>1</span>
+          Beat: <span id='currentBeat'>1</span>
+          Status: <span id='status'>Inactive</span>
+          </p>
+        </div>
+      </div>
+
+      <div id='beatsPerMeasureContainer'>
+        <h2>Beats per Measure</h2>
+        <div>
+          <span id='plusBtn'>+</span>
+          <span id='beatsPerMeasureCount'>128</span>
+          <span id='minusBtn'>-</span>
+        </div>
+      </div>
+
+      <div id='timeSignatureContainer'>
+        <h2>Time Signature</h2>
+        <div>
+          <span id='beat'>4</span> /
+          <span id='note'>4</span>
+        </div>
+      </div>
+
+      <div id='playBtnContainer'>
+        <div>
+          <button id='start'>Start</button>
+          <button id='stop'>Stop</button>
+        </div>
       </div>
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/underscore.js"></script>
-    <script src="js/metronome.js"></script>
+    <script src='js/jquery.js'></script>
+    <script src='js/underscore.js'></script>
+    <script src='js/metronome.js'></script>
   </body>
 </html>
