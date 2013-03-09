@@ -106,3 +106,26 @@ hr{
   width:450px;
   margin:0 auto;
 }
+
+#timeSignatureContainer ul{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+#timeSignatureContainer li{
+  display:inline-block;
+  font-size:2em;
+}
+
+#timeSignatureContainer li:first-child, #timeSignatureContainer li:last-child{
+  width:25%;
+  background: linear-gradient(to bottom, rgba(242,245,246,1) 0%,rgba(227,234,237,1) 37%,rgba(200,215,220,1) 100%); /* W3C */
+  border-radius:3px;
+  border:solid 1px white;
+  box-shadow:0px 0px 3px #444;
+}
+
+#timeSignatureContainer h2{
+  margin-top:25px;
+  margin-bottom:25px;
+}
